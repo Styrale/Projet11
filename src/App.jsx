@@ -3,11 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import store from './pages/Redux/store'
 import Header from './components/Header'
 import Home from './pages/Home'
-import LogIn from './pages/loginPage/LogIn'
-import Profile from './pages/userPage/Profile'
+import LogIn from './pages/LogIn'
+import Profile from './pages/Profile'
 import Footer from './components/Footer'
 import Error from './pages/Error'
-import UserLogged from './components/UserLogged'
 import { Provider } from 'react-redux'
 
 function App() {
@@ -15,16 +14,14 @@ function App() {
     <Provider store={store}>
       <Router>
         <Header />
-        <section className="elementsToDisplay">
+        <div>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<LogIn />} />
-            <Route path="/profile" element={<UserLogged />}>
-              <Route path="/profile" element={<Profile />} />
-            </Route>
+            <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<Error />} />
           </Routes>
-        </section>
+        </div>
         <Footer />
       </Router>
     </Provider>

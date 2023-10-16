@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-/**
- * Component - Header
- * @returns {React.ReactElement} JSX.Element - header component
- */
+import { profileFirstName } from '../pages/Redux/profile.js'
+
 
 function LogIn() {
   const dispatch = useDispatch()
   const { isAuth } = useSelector((state) => state.login)
   const { firstName } = useSelector((state) => state.profile)
   const localStorageFirstName = localStorage.getItem('firstName')
+
+  useEffect(() => {
+    if (localStorageFirstName) {
+      dispatch(profileFirstName(localStorageFirstName))
+    }
+  }, [dispatch, localStorageFirstName])
 
   return (
     <>

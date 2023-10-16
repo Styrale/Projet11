@@ -1,39 +1,64 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { logingOut } from '../pages/loginPage/loginSlice'
-import { profileOut } from '../pages/profilePage/profileSlice'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
-/**
- * Component - Header
- * @returns {React.ReactElement} JSX.Element - header component
- */
+// Types d'actions
+const LOGOUT = 'user/logout';
+const CLEAR_PROFILE = 'user/clear_profile';
 
+// Action creators
+const logoutAction = () => ({
+  type: LOGOUT,
+});
+
+const clearProfileAction = () => ({
+  type: CLEAR_PROFILE,
+});
+
+// Réducteur
+const initialState = {
+  isAuth: false,
+};
+
+const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOGOUT:
+      return {
+        ...state,
+        isAuth: false,
+      };
+    case CLEAR_PROFILE:
+      return {
+        ...state,
+        // Réinitialisez ici les données de profil si nécessaire.
+      };
+    default:
+      return state;
+  }
+};
+
+// Composant LogOut
 function LogOut() {
-  const { isAuth } = useSelector((state) => state.login)
-  const dispatch = useDispatch()
+  const { isAuth } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  function ClearLocalStorage() {
-    localStorage.clear()
+  function clearLocalStorage() {
+    localStorage.clear();
 
-    dispatch(logingOut())
-    dispatch(profileOut())
+    dispatch(logoutAction());
+    dispatch(clearProfileAction());
   }
 
   return (
     <>
       {isAuth && (
-        <Link
-          className="main-nav-item"
-          onClick={() => ClearLocalStorage()}
-          to="/"
-        >
+        <Link className="main-nav-item" onClick={() => clearLocalStorage()} to="/">
           <i className="fa-solid fa-arrow-right-from-bracket" />
           Sign Out
         </Link>
       )}
     </>
-  )
+  );
 }
 
-export default LogOut
+export default LogOut;

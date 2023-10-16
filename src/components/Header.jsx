@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import argentBankLogo from '../assets/img/argentBankLogo.png'
+// import LogOut from './LogOut'
+// import LogIn from './logIn'
 
 
 
@@ -16,6 +18,10 @@ function Header() {
           />
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
+        {/* <div>
+          <LogIn />
+          <LogOut />
+        </div> */}
       </nav>
     </header>
   )
