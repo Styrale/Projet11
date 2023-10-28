@@ -1,40 +1,42 @@
-// import React from 'react'
-// // import { userDatas } from '../services/userDatas'
-// import { useDispatch, useSelector } from 'react-redux'
-// import UserHeader from '../components/userHeader'
-// import ProfileAccounts from '../components/ProfileAccounts'
-import axios from 'axios'
-const token = localStorage.getItem('token')
-if (token) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-}
+import React from 'react'
+import ProfileDetails from '../components/ProfileDetails'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { userInfo } from './Redux/user.actions';
+
 
 function Profile() {
-  return ("Profil")
-    
-//   const dispatch = useDispatch()
-//   const { isRemember } = useSelector((state) => state.login)
+  const navigate = useNavigate();
+  const {userName, token, isLogged} = useSelector((store) => store.user);
+  const dispatch = useDispatch()
 
-//   userDatas()
-//     .then((data) => {
-//       dispatch(profileFirstName(data.body.firstName))
-//       dispatch(profileLastName(data.body.lastName))
+  useEffect(() => {
+    if (!isLogged) {
+      return navigate('/login');
+    }
 
-//       if (isRemember) {
-//         localStorage.setItem('firstName', data.body.firstName)
-//         localStorage.setItem('lastName', data.body.lastName)
-//       } else {
-//         localStorage.removeItem('firstName')
-//         localStorage.removeItem('lastName')
-//       }
-//     })
-//     .catch((error) => dispatch(profileError(error.response.data.message)))
+    const getUserInfo = () => {
+      fetch('http://localhost:3001/api/v1/user/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        }
+      }).then(response => response.json()).then(data => dispatch(userInfo(data.body)))
+    }
 
-//   return (
-//     <main className="main bg-dark">
-//       <UserHeader />
-//       <ProfileAccounts />
-//     </main>
-//   )
+    getUserInfo()
+
+  }, [isLogged, navigate]);
+
+
+console.log(userName)
+
+  return (
+    <main className='main bg-dark'>
+      <ProfileDetails />
+    </main>
+  );
 }
+
 export default Profile

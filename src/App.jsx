@@ -14,14 +14,13 @@ function App() {
     <Provider store={store}>
       <Router>
         <Header />
-        <div>
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="*" element={<Error />} />
           </Routes>
-        </div>
         <Footer />
       </Router>
     </Provider>

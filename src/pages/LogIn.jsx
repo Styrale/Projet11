@@ -9,7 +9,6 @@ export default function Login() {
     password: 'password123',
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [error, setError] = useState(null);
 
   const dispatch = useDispatch();
@@ -36,8 +35,7 @@ export default function Login() {
       .then((response) => {
         if (response.status === 200) {
           dispatch(login({ ...response.body }));
-          setIsLoggedIn(true);
-          redirectToProfile();
+          navigate('/profile');
         }
       })
       .catch((error) => {
@@ -46,14 +44,8 @@ export default function Login() {
       });
   };
 
-  const redirectToProfile = () => {
-    if (isLoggedIn) {
-      navigate('/profile');
-    }
-  };
-
   return (
-    <main className="main bg-dark">
+    <main className='main bg-dark'>
       <section className="sign-in-content">
         <i className="fa fa-user-circle sign-in-icon"></i>
         <h1>Sign In</h1>
