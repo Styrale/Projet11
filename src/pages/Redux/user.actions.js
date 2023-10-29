@@ -17,3 +17,10 @@ export const userInfo = (payload) => {
         payload,
     };
 };
+
+export const updateUserName = (newName) => {
+    return {
+      type: 'USERNAME',
+      payload: newName,
+    };
+  };

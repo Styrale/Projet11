@@ -294,6 +294,19 @@ body {
   padding: 10px;
 }
 
+.name-field {
+
+  margin-top: 10px;
+  margin-right: 3px;
+  margin-bottom: 10px;
+  width: 350px;
+  border-color: rgb(158, 158, 158);
+  background-color: rgb(158, 158, 158);
+  color: rgb(88, 88, 88);
+  font-weight: bold;
+  padding: 10px;
+}
+
 .name-change-button {
   margin-top: 10px;
   margin: 3px;
@@ -302,6 +315,21 @@ body {
   color: #fff;
   font-weight: bold;
   padding: 10px;
+  width: 41%;
+}
+
+.form-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.buttons {
+  display: flex;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 20px;
+  justify-content: center;
 }
 
 @media (min-width: 720px) {

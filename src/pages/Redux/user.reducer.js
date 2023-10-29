@@ -16,6 +16,8 @@ const userReducer = (state = initialState, action) => {
             return { ...initialState };
         case 'INFO':
             return { ...state, ...action.payload };
+        case 'USERNAME':
+            return { ...state, userName: action.payload };
         default: 
             return state;
     }
