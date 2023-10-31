@@ -266,6 +266,8 @@ body {
 
 .header {
   color: #fff;
+  width: 60%;
+  margin: 0 auto;
   margin-bottom: 2rem;
 }
 
@@ -326,9 +328,11 @@ body {
 
 .buttons {
   display: flex;
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
   margin-top: 20px;
+  padding-left: 10%;
+  padding-right: 10%;
   justify-content: center;
 }
 
