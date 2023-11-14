@@ -1,10 +1,10 @@
-import iconChat from '../assets/img/icon-chat.png'
-import iconMoney from '../assets/img/icon-money.png'
-import iconSecurity from '../assets/img/icon-security.png'
+import iconChat from "../assets/img/icon-chat.webp";
+import iconMoney from "../assets/img/icon-money.webp";
+import iconSecurity from "../assets/img/icon-security.webp";
 
 function Home() {
   return (
-    <main className='main'>
+    <main className="main">
       <div className="hero">
         <section className="hero-content">
           <h2 className="sr-only">Promoted Content</h2>
@@ -43,7 +43,7 @@ function Home() {
         </div>
       </section>
     </main>
-  )
+  );
 }
 
-export default Home
+export default Home;
